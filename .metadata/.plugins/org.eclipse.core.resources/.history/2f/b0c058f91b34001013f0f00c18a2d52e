@@ -1,0 +1,39 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.jogoseletronicos.model.Jogo" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Jogos</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/header.css">
+</head>
+<body>
+	
+	
+	<%
+    String contextPath = request.getContextPath();
+	%>
+	
+	<jsp:include page= "header.jsp" />
+	
+    <h2>Lista de Jogos Cadastrados</h2>
+
+    <%
+        ArrayList<Jogo> listaJogos = (ArrayList<Jogo>) request.getAttribute("listaJogos");
+        if (listaJogos != null && !listaJogos.isEmpty()) {
+            for (Jogo jogo : listaJogos) {
+    %>
+    			<a href= " exibir-detalhes-jogo?titulo=<%= jogo.getTitulo() %>"><img src="uploads/<%= jogo.getImagemJogo() %>" alt="Arte do Jogo" width="200"></a>
+                <a href=" exibir-detalhes-jogo?titulo=<%= jogo.getTitulo() %>"><strong>Título:</strong> <%= jogo.getTitulo() %></a>                 
+    <%
+            }
+        } else {
+    %>
+        <p>Nenhum jogo cadastrado.</p>
+    <%
+        }
+    %>
+    
+    <a href="<%= contextPath %>/view/cadastrar-jogo.jsp">Cadastrar novo Jogo</a><br><br>
+</body>
+</html>

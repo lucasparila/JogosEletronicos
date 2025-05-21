@@ -1,0 +1,7 @@
+INDEX VERSION 1.134+C:\Users\Pichau\Desktop\Jogos Eletronicos\.metadata\.plugins\org.eclipse.jdt.core
+3438532772.index
+2557997862.index
+4241786036.index
+1865797976.index
+1229475670.index
+1288848795.index

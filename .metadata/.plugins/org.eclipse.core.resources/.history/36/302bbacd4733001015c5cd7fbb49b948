@@ -1,0 +1,5 @@
+package com.jogoseletronicos.controller;
+
+public class SairServlet {
+
+}

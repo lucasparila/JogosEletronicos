@@ -1,0 +1,25 @@
+.form-conta {
+    display: block;
+    max-width: 400px;
+    margin: auto;
+}
+
+.titulo-conta{
+	margin-left: 800px;
+}
+
+.form-conta input[type="text"], 
+.form-conta textarea, 
+.form-conta input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+.form-conta button, 
+.form-conta input[type="submit"] {
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

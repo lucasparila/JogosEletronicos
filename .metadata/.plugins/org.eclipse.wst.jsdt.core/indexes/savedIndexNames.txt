@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+C:\Users\Pichau\Desktop\Jogos Eletronicos\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2831618276.index
+308786764.index
+1040806095.index
+3614246274.index
+4051065701.index
+3752400821.index
+2557997862.index

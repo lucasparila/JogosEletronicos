@@ -1,0 +1,24 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastrar Jogo</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/header.css">
+</head>
+<body>
+
+    <jsp:include page="header.jsp" />
+    <h2 class="titulo-login">Página de Login</h2>
+    
+    <form class="form-login" action="<%= request.getContextPath() %>/login" method="post">
+        <label>Username:</label>
+        <input type="text" name="username" required><br><br> <!-- Correção aqui -->
+
+        <label>Senha:</label>
+        <input type="password" name="senha" required><br><br> <!-- Correção aqui -->
+
+        <a href="view/criar-conta">Criar conta</a>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

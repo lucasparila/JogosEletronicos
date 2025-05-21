@@ -1,0 +1,5 @@
+package com.jogoseletronicos.model;
+
+public class Usuario {
+
+}

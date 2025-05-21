@@ -1,0 +1,5 @@
+INDEX VERSION 1.134
+C:\Users\Pichau\Desktop\Jogos Eletronicos\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1562954974.index
+\JogosEletronicos\src\main\resources
+C:\Users\Pichau\Desktop\Jogos Eletronicos\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3614246274.index
+\JogosEletronicos\src\main\resources

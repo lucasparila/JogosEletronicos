@@ -1,0 +1,28 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    
+</head>
+<body>
+
+	<jsp:include page="view/header.jsp" />
+    <h2>Página Inicial</h2>
+    
+     <% 
+        String mensagem = (String) session.getAttribute("mensagem");
+        if (mensagem != null) { 
+    %>
+        <p style="color: green;"><%= mensagem %></p>
+        <% session.removeAttribute("mensagem"); %> <!-- Remove após exibir -->
+    <% } %>
+    
+    <% String mensagem2 = (String) session.getAttribute("mensagem"); %>
+<% if (mensagem != null) { %>
+    <p style="color: red;"><%= mensagem %></p>
+    <% session.removeAttribute("mensagem"); %> <!-- Remove após exibir -->
+<% } %>
+   
+</body>
+</html>
