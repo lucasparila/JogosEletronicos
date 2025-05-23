@@ -1,0 +1,24 @@
+
+/* Carrossel: imagem inteira, diminuída e centralizada */
+.carr-img {
+    max-width: 200px;      /* largura máxima */
+    max-height: 200px;     /* altura máxima */
+    width: auto;           /* preserva proporção */
+    height: auto;          /* preserva proporção */
+    object-fit: contain;   /* mostra a imagem completa */
+    display: block;
+    margin: 0 auto;
+}
+
+
+.card-img-top {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.carr-img{
+	 height: 200px;
+    width: 100%;
+    object-fit: cover;
+}

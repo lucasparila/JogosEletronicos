@@ -1,0 +1,32 @@
+
+/* === CARROSSEL === */
+.carousel-img {
+    max-height: 300px;          /* controla o tamanho do carrossel */
+    width: auto;                /* mantém proporção da imagem */
+    object-fit: contain;        /* imagem inteira visível */
+    margin: 0 auto;             /* centraliza a imagem */
+    display: block;
+}
+
+/* === IMAGENS DOS CARDS === */
+.card img {
+    max-height: 200px;
+    object-fit: contain;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+/* === TÍTULOS DAS SEÇÕES === */
+h2, h3 {
+    margin-top: 30px;
+}
+
+/* === TÍTULO EM PROMOÇÃO (EXEMPLO) === */
+.card .card-title.text-danger {
+    font-weight: bold;
+}
+
+/* === CENTRALIZAÇÃO OPCIONAL DOS CARDS === */
+.card {
+    text-align: center;
+}

@@ -1,0 +1,31 @@
+
+/* Estilo para imagens no carrossel */
+.carousel-item img {
+    height: 300px; /* altura máxima do carrossel */
+    object-fit: contain; /* garante que a imagem apareça inteira */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Estilo para imagens nos cards */
+.card img {
+    height: 200px; /* altura fixa */
+    object-fit: contain; /* evita corte */
+    padding: 10px;
+}
+
+/* Ajuste para títulos promocionais */
+.card .card-title.text-danger {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Espaçamento extra nos títulos das seções */
+h2, h3 {
+    margin-top: 30px;
+}
+
+/* Correção geral se precisar alinhar algo */
+.card {
+    text-align: center;
+}

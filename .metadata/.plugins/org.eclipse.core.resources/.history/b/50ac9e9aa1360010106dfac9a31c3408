@@ -1,0 +1,17 @@
+
+.carr-img {
+    max-width: 400px;    /* ou o valor que faça sentido para seu layout */
+    width: auto;         /* mantém a largura real até o máximo */
+    max-height: 400px;   /* opcional: limita altura sem distorcer */
+    height: auto;        /* mantém a proporção */
+    object-fit: contain; /* mostra a imagem completa, com “letterbox” se necessário */
+    display: block;      /* ajuda o mx-auto para centralizar */
+    margin: 0 auto;
+}
+
+
+.card-img-top {
+    height: 90px;
+    width: 100%;
+    object-fit: cover;
+}
