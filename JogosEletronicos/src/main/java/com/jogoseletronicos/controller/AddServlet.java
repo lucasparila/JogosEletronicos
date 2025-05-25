@@ -2,6 +2,7 @@ package com.jogoseletronicos.controller;
 
 import com.jogoseletronicos.model.DAO;
 import com.jogoseletronicos.model.Jogo;
+import com.jogoseletronicos.model.TipoCatalogo;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,9 +47,10 @@ public class AddServlet extends HttpServlet {
             }
 
             filePart.write(uploadPath + File.separator + fileName);
+            String caminhoCompletoImagem = "uploads/" + fileName;
 	        // Cria um objeto Jogo com os dados
-	        Jogo jogo = new Jogo(titulo, desenvolvedor, anoLancamento, genero, sinopse, idioma, plataforma, classificacaoIndicativa, fileName);
-	        DAO.adicionarJogo(jogo, getServletContext());
+	        Jogo jogo = new Jogo(titulo, desenvolvedor, anoLancamento, genero, sinopse, idioma, plataforma, classificacaoIndicativa, caminhoCompletoImagem);
+	        DAO.adicionarJogo(jogo, getServletContext(), TipoCatalogo.PERSONALIZADO);
 	        
 	        request.getRequestDispatcher("listar-jogos").forward(request, response);
 	    }

@@ -1,0 +1,34 @@
+package com.jogoseletronicos.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.jogoseletronicos.model.DAO;
+import com.jogoseletronicos.model.Jogo;
+import com.jogoseletronicos.model.TipoCatalogo;
+
+@WebServlet("/exibir-detalhes-jogo-catalogogeral")
+public class ExibirDetalhesJogoCatalogoFixoServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String titulo = request.getParameter("titulo");
+
+        
+        Jogo jogo = DAO.buscarJogoNome(titulo, getServletContext(), TipoCatalogo.GERAL);
+       
+        if (jogo != null) {
+            request.setAttribute("jogo", jogo);
+            request.getRequestDispatcher("view/exibirDestalhesJogoCatalogoGeral.jsp").forward(request, response);
+        } else {
+            request.setAttribute("mensagem", "Jogo não foi carregado corretamente.");
+            request.getRequestDispatcher("view/exibirDetalhesJogo.jsp").forward(request, response);
+        }
+    }
+}

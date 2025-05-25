@@ -4,41 +4,81 @@
 <html>
 <head>
     <title>Editar Jogo</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/header.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/editar-jogo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+   
 </head>
-<body>
-	<jsp:include page="header.jsp" />
-    <h2 class="titulo-editar">Edição do Jogo</h2>
-    <% 
-    	Jogo jogo = (Jogo) request.getAttribute("jogo");
+<body class="bg-light">
+
+    <jsp:include page="header.jsp" />
+
+    <%
+        Jogo jogo = (Jogo) request.getAttribute("jogo");
     %>
-    <form class="form-editar" action="<%= request.getContextPath() %>/editar-jogo" method="post">
-        <label>Título:</label>
-        <input type="text" name="titulo" value ="<%= jogo.getTitulo()%>"><br><br>
 
-        <label>Desenvolvedor:</label>
-        <input type="text" name="desenvolvedor" value = "<%= jogo.getDesenvolvedor()%>"><br><br>
+    <div class="container-fluid py-3">
+        <div class="mx-auto" style="max-width: 75%;">
+            <div class="card shadow-lg border-0 p-5">
+                <div class="row g-5 align-items-start">
+                    <div class="col-12">
+                        <h1 class="fw-bold mb-4 fs-1 text-center">Edição do Jogo</h1>
+                        <form action="<%= request.getContextPath() %>/editar-jogo" method="post" enctype="multipart/form-data">
+                            
 
-        <label>Ano de Lançamento:</label>
-        <input type="text" name="anoLancamento" value = "<%= jogo.getAnoLancamento() %>"><br><br>
+                            <div class="mb-4">
+                                <label for="titulo" class="form-label fs-2">Título</label>
+                                <input type="text" name="titulo" id="titulo" class="form-control form-control-lg" value="<%= jogo.getTitulo() %>" required>
+                            </div>
 
-        <label>Gênero:</label>
-        <input type="text" name="genero" value="<%= jogo.getGenero()%>"><br><br>
+                            <div class="mb-4">
+                                <label for="desenvolvedor" class="form-label fs-2">Desenvolvedor</label>
+                                <input type="text" name="desenvolvedor" id="desenvolvedor" class="form-control form-control-lg" value="<%= jogo.getDesenvolvedor() %>" required>
+                            </div>
 
-        <label>Sinopse:</label>
-        <textarea name="sinopse" ></textarea><%= jogo.getSinopse()%><br><br>
+                            <div class="mb-4">
+                                <label for="anoLancamento" class="form-label fs-2">Ano de Lançamento</label>
+                                <input type="text" name="anoLancamento" id="anoLancamento" class="form-control form-control-lg" value="<%= jogo.getAnoLancamento() %>" required>
+                            </div>
 
-        <label>Idioma:</label>
-        <input type="text" name="idioma" value ="<%= jogo.getIdioma()%>" ><br><br>
+                            <div class="mb-4">
+                                <label for="genero" class="form-label fs-2">Gênero</label>
+                                <input type="text" name="genero" id="genero" class="form-control form-control-lg" value="<%= jogo.getGenero() %>" required>
+                            </div>
 
-        <label>Plataforma:</label>
-        <input type="text" name="plataforma" value ="<%= jogo.getPlataforma()%>"><br><br>
+                            <div class="mb-4">
+                                <label for="sinopse" class="form-label fs-2">Sinopse</label>
+                                <textarea name="sinopse" id="sinopse" rows="4" class="form-control form-control-lg" required><%= jogo.getSinopse() %></textarea>
+                            </div>
 
-        <label>Classificação Indicativa:</label>
-        <input type="text" name="classificacaoIndicativa" value ="<%= jogo.getClassificacaoIndicativa()%>"><br><br>
+                            <div class="mb-4">
+                                <label for="idioma" class="form-label fs-2">Idioma</label>
+                                <input type="text" name="idioma" id="idioma" class="form-control form-control-lg" value="<%= jogo.getIdioma() %>" required>
+                            </div>
 
-        <input type="submit" value="Atualizar Jogo">
-    </form>
+                            <div class="mb-4">
+                                <label for="plataforma" class="form-label fs-2">Plataforma</label>
+                                <input type="text" name="plataforma" id="plataforma" class="form-control form-control-lg" value="<%= jogo.getPlataforma() %>" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="classificacaoIndicativa" class="form-label fs-2">Classificação Indicativa</label>
+                                <input type="text" name="classificacaoIndicativa" id="classificacaoIndicativa" class="form-control form-control-lg" value="<%= jogo.getClassificacaoIndicativa() %>" required>
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="imagemJogo" class="form-label fs-2">Nova Arte do Jogo (opcional)</label>
+                                <input type="file" name="imagemJogo" id="imagemJogo" class="form-control form-control-lg" accept="image/*">
+                            </div>
+
+                            <div class="btn-center">
+                                <button type="submit" class="btn btn-success fs-5">Atualizar Jogo</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

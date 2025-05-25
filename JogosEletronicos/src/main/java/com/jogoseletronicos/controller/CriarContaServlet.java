@@ -28,7 +28,7 @@ public class CriarContaServlet extends HttpServlet {
         UsuarioDAO.adicionarUsuario(usuario, getServletContext());
 		HttpSession session = request.getSession();
 		session.setAttribute("mensagem", "Cadastro realizado com sucesso!");
-		response.sendRedirect("index.jsp");
+		response.sendRedirect(request.getContextPath() + "/view/login.jsp");
         
         
     }

@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
         if (usuario != null && usuario.getSenha().equals(senha)) {
         	HttpSession session = request.getSession();
-            session.setAttribute("username", username);
+        	session.setAttribute("usuarioLogado", usuario);
             response.sendRedirect("index.jsp");
         } else {
             request.getSession().setAttribute("mensagem", "Erro: Usuário ou senha inválidos.");

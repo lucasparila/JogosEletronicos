@@ -18,13 +18,13 @@ public class RemoveServlet extends HttpServlet {
 	    try {
 	        String titulo = request.getParameter("titulo");
 	        
-	        Jogo jogo = DAO.buscarJogoNome(titulo, getServletContext());
+	        Jogo jogo = DAO.buscarJogoNome(titulo, getServletContext(), TipoCatalogo.PERSONALIZADO);
 
 	        if (jogo == null) {
 	            response.getWriter().println("Erro: Jogo não encontrado!");
 	            return;
 	        }
-	        DAO.removerJogo(jogo, getServletContext());
+	        DAO.removerJogo(jogo, getServletContext(), TipoCatalogo.PERSONALIZADO);
 
 	        // Redireciona para a página de exibição
 	        request.getRequestDispatcher("listar-jogos").forward(request, response);

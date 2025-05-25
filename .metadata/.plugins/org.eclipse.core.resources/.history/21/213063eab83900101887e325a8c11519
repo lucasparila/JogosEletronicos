@@ -1,0 +1,32 @@
+
+
+.carousel-img {
+    max-height: 300px;          /* controla o tamanho do carrossel */
+    width: auto;                /* mantém proporção da imagem */
+    object-fit: contain;        /* imagem inteira visível */
+    margin: 0 auto;             /* centraliza a imagem */
+    display: block;
+}
+
+
+.card-img-top {
+    max-height: 200px;
+    object-fit: contain;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+
+h2, h3 {
+    margin-top: 30px;
+}
+
+
+.card .card-title.text-danger {
+    font-weight: bold;
+}
+
+
+.card {
+    text-align: center;
+}

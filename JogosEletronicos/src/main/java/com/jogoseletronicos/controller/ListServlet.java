@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jogoseletronicos.model.DAO;
 import com.jogoseletronicos.model.Jogo;
+import com.jogoseletronicos.model.TipoCatalogo;
 
 @WebServlet ("/listar-jogos")
 public class ListServlet extends HttpServlet {
@@ -34,7 +35,7 @@ public class ListServlet extends HttpServlet {
 	            throws ServletException, IOException {
 
 	        ServletContext context = getServletContext();
-	        ArrayList<Jogo> listaJogos = DAO.getJogos(context);
+	        ArrayList<Jogo> listaJogos = DAO.getJogos(context, TipoCatalogo.PERSONALIZADO);
 
 	      
 

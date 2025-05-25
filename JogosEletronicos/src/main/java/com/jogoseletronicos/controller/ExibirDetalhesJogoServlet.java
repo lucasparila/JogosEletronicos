@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jogoseletronicos.model.DAO;
 import com.jogoseletronicos.model.Jogo;
+import com.jogoseletronicos.model.TipoCatalogo;
 
 @WebServlet("/exibir-detalhes-jogo")
 public class ExibirDetalhesJogoServlet extends HttpServlet {
@@ -20,8 +21,8 @@ public class ExibirDetalhesJogoServlet extends HttpServlet {
         String titulo = request.getParameter("titulo");
 
         
-        Jogo jogo = DAO.buscarJogoNome(titulo, getServletContext());
-
+        Jogo jogo = DAO.buscarJogoNome(titulo, getServletContext(), TipoCatalogo.PERSONALIZADO);
+       
         if (jogo != null) {
             request.setAttribute("jogo", jogo);
             request.getRequestDispatcher("view/exibirDetalhesJogo.jsp").forward(request, response);

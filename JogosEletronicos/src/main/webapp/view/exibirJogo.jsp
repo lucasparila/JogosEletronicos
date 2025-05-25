@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lista de Jogos</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/header.css">
+    <title>Minha Lista de Jogos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
 </head>
 <body>
 	
@@ -15,27 +16,41 @@
 	%>
 	<jsp:include page= "header.jsp" />
 	<body>
-    <h2>Lista de Jogos Cadastrados</h2>
+   
+   <div class="container my-4 border-start border-end border-3">
+    <h2 class="text-center mb-4">Minha Lista de Jogos</h2>
 
-    <%
-        ArrayList<Jogo> listaJogos = (ArrayList<Jogo>) request.getAttribute("listaJogos");
-        if (listaJogos != null && !listaJogos.isEmpty()) {
-            for (Jogo jogo : listaJogos) {
-    %>
-    			  <a href="exibir-detalhes-jogo?titulo=<%= jogo.getTitulo()%>"><%= jogo.getTitulo() %></a>
-    			  <br>
-    			  <a href="exibir-detalhes-jogo?titulo=<%= jogo.getTitulo()%>"><img src="uploads/<%= jogo.getImagemJogo() %>" alt="Arte do Jogo" width="200"></a>
-                <hr>
-               
-    <%
+    <div class="row justify-content-center">
+        <%
+            ArrayList<Jogo> listaJogos = (ArrayList<Jogo>) request.getAttribute("listaJogos");
+            if (listaJogos != null && !listaJogos.isEmpty()) {
+                for (Jogo jogo : listaJogos) {
+        %>
+        <div class="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <a href="exibir-detalhes-jogo?titulo=<%= jogo.getTitulo()%>">
+                    <img src="<%= contextPath + "/" + jogo.getImagemJogo() %>" class="card-img-top" alt="Imagem do Jogo">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title"><%= jogo.getTitulo() %></h5>
+                    <a href="exibir-detalhes-jogo?titulo=<%= jogo.getTitulo()%>" class="btn btn-primary btn-sm">Ver Detalhes</a>
+                </div>
+            </div>
+        </div>
+        <%
+                }
+            } else {
+        %>
+        <p class="text-center">Nenhum jogo cadastrado.</p>
+        <%
             }
-        } else {
-    %>
-        <p>Nenhum jogo cadastrado.</p>
-    <%
-        }
-    %>
-    
-    <a href= "<%= contextPath %>/view/cadastrar-jogo.jsp">Cadastrar novo Jogo</a><br><br>
+        %>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="<%= contextPath %>/view/cadastrar-jogo.jsp" class="btn btn-success">Cadastrar novo Jogo</a>
+    </div>
+</div>
+
 </body>
 </html>

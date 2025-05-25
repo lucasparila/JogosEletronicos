@@ -1,6 +1,8 @@
 package com.jogoseletronicos.controller;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -8,33 +10,39 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.jogoseletronicos.model.*;
 
-@WebServlet("/editar-jogo") 
+@WebServlet("/editar-jogo")
+
+@MultipartConfig(
+	    fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+	    maxFileSize = 1024 * 1024 * 10, // 10MB
+	    maxRequestSize = 1024 * 1024 * 50 // 50MB
+	)
 public class UptadeServlet extends HttpServlet {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	  private static final String UPLOAD_DIR = "uploads";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
 
 	        try {
 	            String nome = request.getParameter("titulo");
-	            Jogo jogo = DAO.buscarJogoNome(nome, getServletContext());
+	            Jogo jogo = DAO.buscarJogoNome(nome, getServletContext(), TipoCatalogo.PERSONALIZADO);
 
 	            if (jogo == null) {
 	                response.getWriter().println("Jogo não encontrado!");
 	                return;
 	            }
 
-	            // Adiciona o livro como atributo na requisição
+	            
 	            request.setAttribute("jogo", jogo);
 
-	            // Encaminha para o JSP
+	            
 	            RequestDispatcher dispatcher = request.getRequestDispatcher("view/editaJogo.jsp");
 	            dispatcher.forward(request, response);
 
@@ -54,9 +62,23 @@ public class UptadeServlet extends HttpServlet {
 	        String idioma = request.getParameter("idioma");
 	        String plataforma = request.getParameter("plataforma");
 	        String classificacaoIndicativa = request.getParameter("classificacaoIndicativa");
+	        Part filePart = request.getPart("imagemJogo"); // Obtém o arquivo enviado
+            String fileName = titulo.replaceAll("\\s+", "_") + "_" + System.currentTimeMillis() + ".jpg"; // Nome único
+            String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIR;
+
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir(); // Cria a pasta se não existir
+            }
+
+            filePart.write(uploadPath + File.separator + fileName);
+            String caminhoCompletoImagem = "uploads/" + fileName;
 
 	        // Busca o jogo existente
-	        Jogo jogo = DAO.buscarJogoNome(titulo, getServletContext());
+	        Jogo jogo = DAO.buscarJogoNome(titulo, getServletContext(), TipoCatalogo.PERSONALIZADO);
+	        if(jogo == null) {
+	        	 jogo = DAO.buscarJogoNome(titulo, getServletContext(), TipoCatalogo.GERAL);
+	        }
 
 	        if (jogo == null) {
 	            response.getWriter().println("Erro: Jogo não encontrado!");
@@ -72,9 +94,11 @@ public class UptadeServlet extends HttpServlet {
 	        jogo.setIdioma(idioma);
 	        jogo.setPlataforma(plataforma);
 	        jogo.setClassificacaoIndicativa(classificacaoIndicativa);
+	        jogo.setImagemJogo(classificacaoIndicativa);
+	        jogo.setImagemJogo(caminhoCompletoImagem);
 
 	        // Atualiza no DAO
-	        DAO.atualizarJogo(jogo, getServletContext());
+	        DAO.atualizarJogo(jogo, getServletContext(), TipoCatalogo.PERSONALIZADO);
 
 	        // Redireciona para a página de exibição
 	        request.getRequestDispatcher("listar-jogos").forward(request, response);

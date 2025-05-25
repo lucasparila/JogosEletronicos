@@ -1,0 +1,34 @@
+<div class="container my-4 border-start border-end border-3">
+    <h2 class="text-center mb-4">Lista de Jogos Cadastrados</h2>
+
+    <div class="row justify-content-center">
+        <%
+            ArrayList<Jogo> listaJogos = (ArrayList<Jogo>) request.getAttribute("listaJogos");
+            if (listaJogos != null && !listaJogos.isEmpty()) {
+                for (Jogo jogo : listaJogos) {
+        %>
+        <div class="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <a href="exibir-detalhes-jogo?titulo=<%= jogo.getTitulo()%>">
+                    <img src="<%= contextPath + "/" + jogo.getImagemJogo() %>" class="card-img-top" alt="Imagem do Jogo">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title"><%= jogo.getTitulo() %></h5>
+                    <a href="exibir-detalhes-jogo?titulo=<%= jogo.getTitulo()%>" class="btn btn-primary btn-sm">Ver Detalhes</a>
+                </div>
+            </div>
+        </div>
+        <%
+                }
+            } else {
+        %>
+        <p class="text-center">Nenhum jogo cadastrado.</p>
+        <%
+            }
+        %>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="<%= contextPath %>/view/cadastrar-jogo.jsp" class="btn btn-success">Cadastrar novo Jogo</a>
+    </div>
+</div>

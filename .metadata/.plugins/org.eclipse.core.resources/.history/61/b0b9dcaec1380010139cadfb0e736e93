@@ -1,0 +1,45 @@
+package com.jogoseletronicos.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.jogoseletronicos.model.DAO;
+import com.jogoseletronicos.model.Jogo;
+import com.jogoseletronicos.model.TipoCatalogo;
+
+@WebServlet ("/adicionar-jogo")
+public class AdicionarJogoDoCatalogoGeral extends HttpServlet{
+
+
+	private static final long serialVersionUID = 1L;
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    try {
+	        String titulo = request.getParameter("titulo");
+	        
+	        Jogo jogo = DAO.buscarJogoNome(titulo, getServletContext(), TipoCatalogo.PERSONALIZADO);
+
+	        if (jogo == null) {
+	            response.getWriter().println("Erro: Jogo não encontrado!");
+	            return;
+	        }
+	        DAO.adicionarJogo(jogo, getServletContext(), TipoCatalogo.PERSONALIZADO);
+
+	        // Redireciona para a página de exibição
+	        request.getRequestDispatcher("listar-jogos").forward(request, response);
+
+	    } catch (Exception e) {
+	        response.getWriter().println("Erro ao adicionar o jogo: " + e.getMessage());
+	    }
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        response.getWriter().println("Página de adição do jogo");
+    }
+}

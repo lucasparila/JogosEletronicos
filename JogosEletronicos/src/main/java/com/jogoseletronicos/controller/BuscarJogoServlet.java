@@ -1,8 +1,8 @@
 package com.jogoseletronicos.controller;
 
-import com.jogoseletronicos.model.DAO;
+import com.jogoseletronicos.model.*;
 import com.jogoseletronicos.model.Jogo;
-
+ 
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,14 +19,17 @@ public class BuscarJogoServlet extends HttpServlet {
         String titulo = request.getParameter("titulo");
 
         
-        Jogo jogoEncontrado = DAO.buscarJogoNome(titulo, getServletContext());
+        Jogo jogoEncontrado = DAO.buscarJogoNome(titulo, getServletContext(), TipoCatalogo.PERSONALIZADO);
+        if(jogoEncontrado == null) {
+        	 jogoEncontrado = DAO.buscarJogoNome(titulo, getServletContext(), TipoCatalogo.GERAL);
+        }
 
         if (jogoEncontrado != null) {
             request.setAttribute("jogo", jogoEncontrado);
-            request.getRequestDispatcher("view/resultado-busca.jsp").forward(request, response);
+            request.getRequestDispatcher("view/exibirDestalhesJogoCatalogoGeral.jsp").forward(request, response);
         } else {
             request.setAttribute("mensagem", "Jogo não encontrado.");
-            request.getRequestDispatcher("view/resultado-busca.jsp").forward(request, response);
+            request.getRequestDispatcher("view/exibirDestalhesJogoCatalogoGeral.jsp").forward(request, response);
         }
     }
 }

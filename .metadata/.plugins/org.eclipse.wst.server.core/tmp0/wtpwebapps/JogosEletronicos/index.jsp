@@ -28,7 +28,7 @@
                     Jogo jogo = catalogo.get(i);
             %>
                 <div class="carousel-item <%= (i == 0 ? "active" : "") %>">
-                    <img src="<%= jogo.getImagemJogo() %>" class="d-block w-50" alt="<%= jogo.getTitulo() %>">
+                    <a href="exibir-detalhes-jogo-catalogogeral?titulo=<%= jogo.getTitulo()%>"><img src="<%= jogo.getImagemJogo() %>" class="d-block w-100" alt="<%= jogo.getTitulo() %>"></a>
                     <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
                         <h5><%= jogo.getTitulo() %></h5>
                         <p><%= jogo.getSinopse() %></p>
@@ -55,7 +55,7 @@
         %>
             <div class="col">
                 <div class="card h-100">
-                    <img src="<%= jogo.getImagemJogo() %>" class="d-block w-100" alt="<%= jogo.getTitulo() %>">
+                    <a href="exibir-detalhes-jogo-catalogogeral?titulo=<%= jogo.getTitulo()%>"><img src="<%= jogo.getImagemJogo() %>" class="d-block w-100" alt="<%= jogo.getTitulo() %>"></a>
                     <div class="card-body">
                         <h5 class="card-title"><%= jogo.getTitulo() %></h5>
                         <p class="card-text"><%= jogo.getSinopse() %></p>
@@ -69,14 +69,14 @@
 
     <!-- Promoções -->
     <h3>Promoções</h3>
-    <div class="row row-cols-1 row-cols-md-3 g-4 m-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
         <%
             for (int i = 6; i < Math.min(9, catalogo.size()); i++) {
                 Jogo jogo = catalogo.get(i);
         %>
             <div class="col">
                 <div class="card h-100">
-                   <img src="<%= jogo.getImagemJogo() %>" class="d-block w-100" alt="<%= jogo.getTitulo() %>">
+                   <a href="exibir-detalhes-jogo-catalogogeral?titulo=<%= jogo.getTitulo()%>"><img src="<%= jogo.getImagemJogo() %>" class="d-block w-100" alt="<%= jogo.getTitulo() %>"></a>
                     <div class="card-body">
                         <h5 class="card-title text-danger"><%= jogo.getTitulo() %></h5>
                         <p class="card-text"><%= jogo.getSinopse() %></p>
